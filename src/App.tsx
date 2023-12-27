@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { Statistics } from "./components/Statistics/Statistics";
 
 type Count = {
   good: number;
@@ -48,22 +49,13 @@ function App() {
           </button>
         </li>
       </ul>
-      <h3>Statistic</h3>
-      <p>
-        Good <span>{count.good}</span>
-      </p>
-      <p>
-        Neutral <span>{count.neutral}</span>
-      </p>
-      <p>
-        Bad <span>{count.bad}</span>
-      </p>
-      <p>
-        Total <span>{total}</span>
-      </p>
-      <p>
-        Positive feedback: <span>{countPositiveFeedbackPercentage()}</span>
-      </p>
+      <Statistics
+        good={count.good}
+        neutral={count.neutral}
+        bad={count.bad}
+        total={total}
+        positivePercentage={countPositiveFeedbackPercentage()}
+      />
     </>
   );
 }
