@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Statistics } from "./components/Statistics/Statistics";
+import { FeedbackOptions } from "./components/FeedbackOptions/FeedbackOptions";
 
 type Count = {
   good: number;
@@ -9,19 +10,18 @@ type Count = {
 };
 
 function App() {
-  const [count, setSetCount] = useState<Count>({
+  const [count, setCount] = useState<Count>({
     good: 0,
     neutral: 0,
     bad: 0,
   });
   const [total, setTotal] = useState(0);
 
-  const handleOnClick = (type: keyof Count) => {
-    setSetCount((prev) => ({
-      ...prev,
-      [type]: prev[type] + 1,
+  const handleOnClick = (feedback: string) => {
+    setCount((prevCount) => ({
+      ...prevCount,
+      [feedback]: prevCount[feedback] + 1,
     }));
-
     setTotal((prevTotal) => prevTotal + 1);
   };
 
@@ -29,26 +29,12 @@ function App() {
     return Math.ceil((count.good / total) * 100) || total;
   };
 
+  const values = Object.keys(count);
+
   return (
     <>
       <h2>Please leave feedback</h2>
-      <ul style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-        <li>
-          <button type="button" onClick={() => handleOnClick("good")}>
-            Good
-          </button>
-        </li>
-        <li>
-          <button type="button" onClick={() => handleOnClick("neutral")}>
-            Neutral
-          </button>
-        </li>
-        <li>
-          <button type="button" onClick={() => handleOnClick("bad")}>
-            Bad
-          </button>
-        </li>
-      </ul>
+      <FeedbackOptions options={values} onLeaveFeedback={handleOnClick} />
       <Statistics
         good={count.good}
         neutral={count.neutral}
