@@ -27,7 +27,7 @@ function App() {
   };
 
   const countPositiveFeedbackPercentage = () => {
-    return Math.ceil((count.good / total) * 100) || total;
+    return Math.ceil((count.good / total) * 100) || 0;
   };
 
   const values = Object.keys(count);
