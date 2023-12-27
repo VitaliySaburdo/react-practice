@@ -1,0 +1,12 @@
+.profile {
+  margin: 0 auto;
+  width: 300px;
+  height: auto;
+}
+
+.avatar {
+  margin: 0 auto;
+  width: 100px;
+  border: 1px solid #8b8b8b;
+  border-radius: 50%;
+}

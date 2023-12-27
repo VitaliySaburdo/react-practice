@@ -1,3 +1,5 @@
+import css from "./Profile.module.css";
+
 type Stats = {
   followers: number;
   views: number;
@@ -20,9 +22,9 @@ export const Profile: React.FC<ProfileProps> = ({
   stats: { followers, views, likes },
 }) => {
   return (
-    <div className="profile">
+    <div className={css.profile}>
       <div className="description">
-        <img src={avatar} alt="User avatar" className="avatar" />
+        <img src={avatar} alt="User avatar" className={css.avatar} width="50px"/>
         <p className="name">{username}</p>
         <p className="tag">{tag}</p>
         <p className="location">{location}</p>
