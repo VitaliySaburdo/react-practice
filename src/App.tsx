@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { Statistics } from "./components/Statistics/Statistics";
 import { FeedbackOptions } from "./components/FeedbackOptions/FeedbackOptions";
+import { Notification } from "./components/Notisication/Notification";
 
 type Count = {
   good: number;
@@ -20,7 +21,7 @@ function App() {
   const handleOnClick = (feedback: string) => {
     setCount((prevCount: Count) => ({
       ...prevCount,
-      [feedback]: prevCount[feedback] + 1,
+      [feedback as keyof Count]: prevCount[feedback as keyof Count] + 1,
     }));
     setTotal((prevTotal: number) => prevTotal + 1);
   };
@@ -35,13 +36,17 @@ function App() {
     <>
       <h2>Please leave feedback</h2>
       <FeedbackOptions options={values} onLeaveFeedback={handleOnClick} />
-      <Statistics
-        good={count.good}
-        neutral={count.neutral}
-        bad={count.bad}
-        total={total}
-        positivePercentage={countPositiveFeedbackPercentage()}
-      />
+      {total ? (
+        <Statistics
+          good={count.good}
+          neutral={count.neutral}
+          bad={count.bad}
+          total={total}
+          positivePercentage={countPositiveFeedbackPercentage()}
+        />
+      ) : (
+        <Notification message="There is no feedback" />
+      )}
     </>
   );
 }
