@@ -18,11 +18,11 @@ function App() {
   const [total, setTotal] = useState(0);
 
   const handleOnClick = (feedback: string) => {
-    setCount((prevCount) => ({
+    setCount((prevCount: Count) => ({
       ...prevCount,
       [feedback]: prevCount[feedback] + 1,
     }));
-    setTotal((prevTotal) => prevTotal + 1);
+    setTotal((prevTotal: number) => prevTotal + 1);
   };
 
   const countPositiveFeedbackPercentage = () => {
