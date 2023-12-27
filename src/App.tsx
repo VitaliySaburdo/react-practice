@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { Statistics } from "./components/Statistics/Statistics";
 import { FeedbackOptions } from "./components/FeedbackOptions/FeedbackOptions";
-import { Notification } from "./components/Notisication/Notification";
+import { Notification } from "./components/Notification/Notification";
 
 type Count = {
   good: number;
