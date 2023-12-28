@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import "./App.css";
+import { nanoid } from "nanoid";
 // import contacts from "./data/contacts.json";
-
 
 type Contact = {
   id: string;
@@ -14,7 +14,8 @@ function App() {
 
   const onAddContact = (e: FormEvent) => {
     e.preventDefault();
-    SetContacts(prev => [...prev, {id: "1", name: name}]);
+    const id = nanoid(8)
+    SetContacts(prev => [...prev, {id: id, name: name}]);
     setName('');
   };
 
@@ -34,7 +35,7 @@ function App() {
       </form>
       <ul style={{marginTop: "50px"}}>
         {contacts.map((contact) => (
-          <li>
+          <li key={contact.id}>
             <p>{contact.name}</p>
           </li>
         ))}
