@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      <form onSubmit={onAddContact}>
+      <form style={{display: "flex", alignItems: "center", flexDirection: "column", gap: "20px"}} onSubmit={onAddContact}>
         <input
           type="text"
           name="name"
@@ -32,7 +32,7 @@ function App() {
         />
         <button>Add contact</button>
       </form>
-      <ul>
+      <ul style={{marginTop: "50px"}}>
         {contacts.map((contact) => (
           <li>
             <p>{contact.name}</p>
