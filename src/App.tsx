@@ -3,6 +3,7 @@ import "./App.css";
 import { Statistics } from "./components/Statistics/Statistics";
 import { FeedbackOptions } from "./components/FeedbackOptions/FeedbackOptions";
 import { Notification } from "./components/Notification/Notification";
+import { Section } from "./components/Section/Section";
 
 type Count = {
   good: number;
@@ -34,8 +35,10 @@ function App() {
 
   return (
     <>
-      <h2>Please leave feedback</h2>
+      <Section title={"Please leave feedback"}>
       <FeedbackOptions options={values} onLeaveFeedback={handleOnClick} />
+      </Section>
+      <Section>
       {total ? (
         <Statistics
           good={count.good}
@@ -47,6 +50,7 @@ function App() {
       ) : (
         <Notification message="There is no feedback" />
       )}
+      </Section>
     </>
   );
 }
