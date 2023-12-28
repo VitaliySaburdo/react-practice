@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { fetchData } from "../service/service";
 import "./App.css";
+import { SearchBar } from "./components/SearchBar";
 
 function App() {
   useEffect(() => {
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <>
-      <h1>App</h1>
+      <SearchBar />
     </>
   );
 }

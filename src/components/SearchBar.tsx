@@ -1,3 +1,12 @@
 export const SearchBar = () => {
-  return <></>;
+  return (
+    <>
+      <div className="Searchbar">
+        <form className="SearchForm">
+          <input type="text" className="SearchForm-input" />
+          <button className="SearchForm-button"></button>
+        </form>
+      </div>
+    </>
+  );
 };
