@@ -22,7 +22,6 @@ function App() {
     (contact) => contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-
   return (
     <>
       <h1>Phone book</h1>

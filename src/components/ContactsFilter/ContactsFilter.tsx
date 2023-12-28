@@ -3,13 +3,9 @@ type ContactsFilterProps = {
 };
 
 export const ContactsFilter: React.FC<ContactsFilterProps> = ({handleOnInput}) => {
-
-
-
-
   return (
     <>
-      <input type="text" name="filter" onInput={handleOnInput} />
+      <input type="text" name="filter" onChange={handleOnInput} />
     </>
   );
 };
