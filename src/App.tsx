@@ -22,14 +22,19 @@ function App() {
     (contact) => contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
+  const handleOnDelete = (id: string) => {
+    SetContacts(visibleContacts.filter(contact => contact.id !== id))
+  }
+  console.log(visibleContacts)
+
   return (
     <>
       <h1>Phone book</h1>
-      <ContactForm onSubmit={handleOnSubmit} />
+      <ContactForm onSubmit={handleOnSubmit} contacts={contacts}/>
       <ContactsFilter
         handleOnInput={handleOnInput}
       />
-      <ContactLIst contacts={visibleContacts} />
+      <ContactLIst onDelete={handleOnDelete} contacts={visibleContacts} />
     </>
   );
 }

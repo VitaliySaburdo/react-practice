@@ -1,27 +1,40 @@
 import { FormEvent, useState } from "react";
 import { nanoid } from "nanoid";
-import {Contact} from '../../types'
+import { Contact } from "../../types";
 
 type ContactFormProps = {
-    onSubmit: (arg0: Contact) => void;
-}
+  onSubmit: (arg0: Contact) => void;
+  contacts: Contact[];
+};
 
-export const ContactForm: React.FC<ContactFormProps> = ({onSubmit}) => {
-    const [name, setName] = useState<string>("");
-    const [number, setNumber] = useState<string>("");
+export const ContactForm: React.FC<ContactFormProps> = ({
+  onSubmit,
+  contacts,
+}) => {
+  const [name, setName] = useState<string>("");
+  const [number, setNumber] = useState<string>("");
 
+  const onAddContact = (e: FormEvent) => {
+    e.preventDefault();
+    setName("");
+    setNumber("");
+    checkName(name);
+  };
+  
+  const checkName = (name: string) => {
+    const id = nanoid(8);
+    for (const contact of contacts) {
+      if (contact.name.toLowerCase().trim().includes(name.toLowerCase().trim())) {
+        alert({ name } + "is already in your contact list");
+        return
+      }
+    }
+    onSubmit({ id: id, name: name, phone: number });
+  };
 
-    const onAddContact = (e: FormEvent) => {
-        e.preventDefault();
-        const id = nanoid(8);
-        setName("");
-        setNumber("");
-        onSubmit({ id: id, name: name, phone: number })
-      };
-
-
-    return <>
-     <form
+  return (
+    <>
+      <form
         style={{
           display: "flex",
           alignItems: "center",
@@ -49,5 +62,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({onSubmit}) => {
           value={number}
         />
         <button>Add contact</button>
-      </form></>
-}
+      </form>
+    </>
+  );
+};
