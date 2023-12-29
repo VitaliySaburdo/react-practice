@@ -32,6 +32,7 @@ function App() {
   }, [query, page]);
 
   const onSearchQuery = (query: string) => {
+    setGallery([]);
     setQuery(query);
     setPage(1);
   };
