@@ -14,8 +14,8 @@ function App() {
         return
       }
       try {
-        const data = await fetchData(query);
-        setGallery(data);
+        const {hits} = await fetchData(query);
+        setGallery(hits);
       } catch (error) {
         console.log(error);
       }

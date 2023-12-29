@@ -6,7 +6,7 @@ export const ImageGallery = ({gallery}: {gallery: PixabayImage[]}) => {
     <>
       <ul className="ImageGallery ">
         {gallery.map(card => (
-          <ImageGalleryItem card={card}/>
+          <ImageGalleryItem key={card.id} card={card}/>
         ))}
       </ul>
     </>
