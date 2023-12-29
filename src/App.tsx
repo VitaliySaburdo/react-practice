@@ -18,18 +18,13 @@ function App() {
     getData();
   }, [query]);
 
-  const HandleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setQuery("");
-  };
-
-  const handleOnInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+  const onSearchQuery = (query: string) => {
+    setQuery(query);
   };
 
   return (
     <>
-      <SearchBar handleOnSubmit={HandleSearch} handleOnChange={handleOnInput} />
+      <SearchBar onSubmit={onSearchQuery} />
     </>
   );
 }

@@ -1,14 +1,23 @@
+import { useState } from "react";
 import search from "../assets/search.svg";
 
 type SearchBarProps = {
-  handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (query: string) => void;
 };
 
-export const SearchBar: React.FC<SearchBarProps> = ({
-  handleOnChange,
-  handleOnSubmit,
-}) => {
+export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+  const [query, setQuery] = useState<string>("");
+
+  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmit(query);
+    setQuery("");
+  };
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
   return (
     <>
       <div className="Searchbar">
