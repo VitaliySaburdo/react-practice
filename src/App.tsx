@@ -1,36 +1,53 @@
 import { useEffect, useState } from "react";
+import * as Scroll from 'react-scroll'
 import { fetchData } from "../service/service";
+import {PixabayImage} from './types'
 import "./App.css";
 import { SearchBar } from "./components/SearchBar";
 import { ImageGallery } from "./components/ImageGallery";
+import { Button } from "./components/Button";
+
 
 function App() {
   const [query, setQuery] = useState<string>("");
-  const [gallery, setGallery] = useState([]);
+  const [gallery, setGallery] = useState<PixabayImage[]>([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const getData = async () => {
-      if(query === '') {
-        return
+      if (query === "") {
+        return;
       }
       try {
-        const {hits} = await fetchData(query);
-        setGallery(hits);
+        const { hits } = await fetchData(query, page);
+        if (hits.length === 0) {
+          alert("No hits found");
+        }
+        setGallery(prevCards=>[...prevCards, ...hits]);
       } catch (error) {
         console.log(error);
       }
     };
     getData();
-  }, [query]);
+  }, [query, page]);
 
   const onSearchQuery = (query: string) => {
     setQuery(query);
+    setPage(1);
   };
+
+  const handleOnLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+    const scroll = Scroll.animateScroll;
+    scroll.scrollMore(650);
+  };
+
 
   return (
     <>
       <SearchBar onSubmit={onSearchQuery} />
-      <ImageGallery gallery={gallery}/>
+      <ImageGallery gallery={gallery} />
+      {gallery.length !== 0 && <Button onClick={handleOnLoadMore} />}
     </>
   );
 }
