@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import * as Scroll from 'react-scroll'
+import * as Scroll from "react-scroll";
 import { fetchData } from "../service/service";
-import {PixabayImage} from './types'
+import { PixabayImage } from "./types";
 import "./App.css";
 import { SearchBar } from "./components/SearchBar";
 import { ImageGallery } from "./components/ImageGallery";
 import { Button } from "./components/Button";
-
 
 function App() {
   const [query, setQuery] = useState<string>("");
@@ -23,7 +22,7 @@ function App() {
         if (hits.length === 0) {
           alert("No hits found");
         }
-        setGallery(prevCards=>[...prevCards, ...hits]);
+        setGallery((prevCards) => [...prevCards, ...hits]);
       } catch (error) {
         console.log(error);
       }
@@ -43,12 +42,15 @@ function App() {
     scroll.scrollMore(650);
   };
 
-
   return (
     <>
       <SearchBar onSubmit={onSearchQuery} />
       <ImageGallery gallery={gallery} />
-      {gallery.length !== 0 && <Button onClick={handleOnLoadMore} />}
+      {gallery.length !== 0 && (
+        <Button style={{ marginBottom: "20px" }} onClick={handleOnLoadMore}>
+          Load more
+        </Button>
+      )}
     </>
   );
 }
