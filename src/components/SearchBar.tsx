@@ -28,6 +28,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
             name="query"
             onChange={handleOnChange}
             value={query}
+            placeholder="Enter your query"
           />
           <button className="SearchForm-button">
             <img src={search} alt="search" />

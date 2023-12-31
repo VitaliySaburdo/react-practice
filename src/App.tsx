@@ -58,10 +58,14 @@ function App() {
     <>
       <SearchBar onSubmit={onSearchQuery} />
       <ImageGallery onClick={handleClickOnImage} gallery={gallery} />
-      {gallery.length !== 0 && (
+      {gallery.length !== 0 ? (
         <Button style={{ marginBottom: "20px" }} onClick={handleOnLoadMore}>
           Load more
         </Button>
+      ) : (
+        <h2 style={{ display: "flex", justifyContent: "center" }}>
+          Gallery is empty. Please enter your query
+        </h2>
       )}
       {isOpen && (
         <Modal onClick={toggleModal}>
