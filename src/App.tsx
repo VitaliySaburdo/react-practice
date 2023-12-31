@@ -6,11 +6,14 @@ import "./App.css";
 import { SearchBar } from "./components/SearchBar";
 import { ImageGallery } from "./components/ImageGallery";
 import { Button } from "./components/Button";
+import { Modal } from "./components/Modal";
 
 function App() {
   const [query, setQuery] = useState<string>("");
   const [gallery, setGallery] = useState<PixabayImage[]>([]);
   const [page, setPage] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
+  const [largeImgUrl, setLargeImgUrl] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -42,14 +45,29 @@ function App() {
     scroll.scrollMore(650);
   };
 
+  const handleClickOnImage = (imgUrl: string) => {
+    setIsOpen(true);
+    setLargeImgUrl(imgUrl);
+  };
+
+  const toggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <>
       <SearchBar onSubmit={onSearchQuery} />
-      <ImageGallery gallery={gallery} />
+      <ImageGallery onClick={handleClickOnImage} gallery={gallery} />
       {gallery.length !== 0 && (
         <Button style={{ marginBottom: "20px" }} onClick={handleOnLoadMore}>
           Load more
         </Button>
+      )}
+      {isOpen && (
+        <Modal onClick={toggleModal}>
+          {" "}
+          <img src={largeImgUrl} alt="img" />{" "}
+        </Modal>
       )}
     </>
   );

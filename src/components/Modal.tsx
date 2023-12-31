@@ -36,9 +36,9 @@ export const Modal: React.FC<ModalProps> = ({ onClick, children }) => {
     <>
       <div className="Overlay" onClick={handleBackdropClick}>
         <div className="Modal" onClick={(e) => e.stopPropagation()}>
-          <button onClick={handleBackdropClick} type="button">
-            <img src={cross} alt="cross" width={14} />
-          </button>
+          {/* <button onClick={handleBackdropClick} type="button" style={{display: 'flex', width: "20px", height: "20px"}}>
+            <img src={cross} alt="cross" width={20} />
+          </button> */}
           {children}
         </div>
       </div>

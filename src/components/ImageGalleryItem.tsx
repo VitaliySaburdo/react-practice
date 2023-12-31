@@ -1,9 +1,9 @@
 import {PixabayImage} from '../types'
 
-export const ImageGalleryItem = ({card}: {card: PixabayImage}) => {
+export const ImageGalleryItem = ({card, onClick}: {card: PixabayImage, onClick: (imgUrl: string)=> void}) => {
   return <>
   <li className="ImageGalleryItem">
-    <img className="ImageGalleryItem-image" src={card.webformatURL} alt="" />
+    <img onClick={() => onClick(card.largeImageURL)} className="ImageGalleryItem-image" src={card.webformatURL} alt={card.tags} />
   </li>
   </>;
 };
