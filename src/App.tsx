@@ -14,6 +14,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [largeImgUrl, setLargeImgUrl] = useState("");
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -21,9 +22,12 @@ function App() {
         return;
       }
       try {
-        const { hits } = await fetchData(query, page);
+        const { totalHits, hits } = await fetchData(query, page);
         if (hits.length === 0) {
           alert("No hits found");
+        }
+        if (Math.ceil(totalHits / 20) <= page) {
+          setShow(false);
         }
         setGallery((prevCards) => [...prevCards, ...hits]);
       } catch (error) {
@@ -46,7 +50,7 @@ function App() {
   };
 
   const handleClickOnImage = (imgUrl: string) => {
-    setIsOpen(true);
+    setIsOpen(false);
     setLargeImgUrl(imgUrl);
   };
 
@@ -58,14 +62,15 @@ function App() {
     <>
       <SearchBar onSubmit={onSearchQuery} />
       <ImageGallery onClick={handleClickOnImage} gallery={gallery} />
-      {gallery.length !== 0 ? (
-        <Button style={{ marginBottom: "20px" }} onClick={handleOnLoadMore}>
-          Load more
-        </Button>
-      ) : (
+      {gallery.length === 0 && (
         <h2 style={{ display: "flex", justifyContent: "center" }}>
           Gallery is empty. Please enter your query
         </h2>
+      )}
+      {show && gallery.length !== 0 && (
+        <Button style={{ marginBottom: "20px" }} onClick={handleOnLoadMore}>
+          Load more
+        </Button>
       )}
       {isOpen && (
         <Modal onClick={toggleModal}>
