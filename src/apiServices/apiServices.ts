@@ -18,3 +18,9 @@ export const fetchMoviesData = async () => {
     console.log(error);
   }
 };
+
+export const getFilmDetails = async (id: string) => {
+  const url = `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
+  const response = await axios.get(url);
+  return response.data;
+};
