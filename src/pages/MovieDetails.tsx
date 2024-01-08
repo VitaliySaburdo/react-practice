@@ -1,5 +1,11 @@
+import { MovieItem } from "../components/MovieItem/MovieItem";
+
 const MovieDetails = () => {
-  return <></>;
+  return (
+    <>
+      <MovieItem />
+    </>
+  );
 };
 
 export default MovieDetails;
