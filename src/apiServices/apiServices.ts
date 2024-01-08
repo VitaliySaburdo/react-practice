@@ -12,3 +12,5 @@ export const fetchMoviesData = async() => {
         console.log(error);
       }
 }
+
+fetchMoviesData()

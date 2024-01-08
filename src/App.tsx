@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { SharedLayout } from "./layout/ShareLayout/ShareLayout";
+import { fetchMoviesData } from "./apiServices/apiServices";
 
 const Home = lazy(() => import("./pages/Home"));
 const Movies = lazy(() => import("./pages/Movies"));
@@ -8,6 +9,14 @@ const MovieDetails = lazy(() => import("./pages/MovieDetails"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
+  useEffect(() => {
+    const getMoviesData = async () => {
+      const moviesData = await fetchMoviesData();
+      console.log(moviesData);
+    };
+    getMoviesData();
+  }, []);
+
   return (
     <>
       <Routes>
