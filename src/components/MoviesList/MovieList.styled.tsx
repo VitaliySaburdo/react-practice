@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, 228px);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 16px;
   list-style-type: none;
 `;
@@ -16,8 +16,6 @@ export const Item = styled.li`
 
 export const Img = styled.img`
   display: block;
-  width: 280px;
-  height: 360px;
   border-radius: 8px;
   margin-bottom: 10px;
 `;
