@@ -25,7 +25,7 @@ export const MovieItem: React.FC<{ movie: MovieDetailsProps }> = ({
               ? `https://image.tmdb.org/t/p/w500${poster_path}`
               : noPoster
           }
-          alt=""
+          alt={title}
           width={300}
         />
         <div>

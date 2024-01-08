@@ -7,6 +7,7 @@ export const Container = styled.div`
 
 export const Img = styled.img`
   margin-right: 20px;
+  width: 350px;
 `;
 
 export const Box = styled.ul`
