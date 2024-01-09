@@ -1,5 +1,7 @@
 const Movies = () => {
-  return <></>;
+  return <>
+  <input type="text" />
+  </>;
 };
 
 export default Movies;
