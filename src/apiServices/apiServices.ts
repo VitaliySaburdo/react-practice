@@ -19,8 +19,30 @@ export const fetchMoviesData = async () => {
   }
 };
 
+// Запрос детальной информации по id
 export const getFilmDetails = async (id: string) => {
   const url = `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
+  const response = await axios.get(url);
+  return response.data;
+};
+
+// Запрос информации о актерах по id
+export const getFilmCast = async (id: string) => {
+  const url = `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+  const response = await axios.get(url);
+  return response.data;
+};
+
+// Запрос описания по id
+export const getFilmReviews = async (id: string) => {
+  const url = `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}&language=en-US`;
+  const response = await axios.get(url);
+  return response.data;
+};
+
+// Запрос описания по query
+export const getFilmSearch = async (query: string, page: number) => {
+  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=${page}&language=en-US`;
   const response = await axios.get(url);
   return response.data;
 };

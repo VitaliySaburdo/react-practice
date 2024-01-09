@@ -1,7 +1,9 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { Suspense, useRef } from "react";
 import noPoster from "../../images/No_image_poster.png";
 import { Img, Container, Box } from "./MovieItem.styled";
 import { MovieDetailsProps } from "../../types";
+
 
 export const MovieItem: React.FC<{ movie: MovieDetailsProps }> = ({
   movie,
@@ -14,10 +16,11 @@ export const MovieItem: React.FC<{ movie: MovieDetailsProps }> = ({
   const userScore = vote_average && vote_average * 10;
   const genresList = genres && genres.map((genre) => genre.name + ", ");
 
-  const backToUrl = location.state?.from ?? "/movies";
+  const backToUrl = useRef<string>(location.state?.from ?? "/movies");
+
   return (
     <>
-      <Link to={backToUrl}> Go back</Link>
+      <Link to={backToUrl.current}> Go back</Link>
       <Container>
         <Img
           src={
@@ -47,6 +50,9 @@ export const MovieItem: React.FC<{ movie: MovieDetailsProps }> = ({
           <Link to="reviews">Reviews</Link>
         </li>
       </Box>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

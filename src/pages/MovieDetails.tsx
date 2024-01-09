@@ -19,7 +19,7 @@ const MovieDetails = () => {
     };
     fetchMovieDetails();
   }, [movieId]);
-  console.log(movie);
+
 
   return <>{movie && <MovieItem movie={movie} />}</>;
 };
