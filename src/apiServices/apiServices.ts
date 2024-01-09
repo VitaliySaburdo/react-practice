@@ -41,8 +41,8 @@ export const getFilmReviews = async (id: string) => {
 };
 
 // Запрос описания по query
-export const getFilmSearch = async (query: string, page: number) => {
-  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=${page}&language=en-US`;
+export const getFilmSearch = async (query: string) => {
+  const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=1&language=en-US`;
   const response = await axios.get(url);
   return response.data;
 };

@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import { MovieData } from "../../types";
+import { MovieData, Movie } from "../../types";
 import { Container, Img, ProductName } from "./MovieList.styled";
 import noPoster from "../../images/No_image_poster.png";
 
 interface MoviesListProps {
-  movies: MovieData[];
+  movies: MovieData[] | Movie[];
 }
 
 export const MoviesList: React.FC<MoviesListProps> = ({ movies }) => {
