@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { SearchMovie } from "../components/SearchMovie/SearchMovie";
 import { MoviesList } from "../components/MoviesList/MoviesList";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { getFilmSearch } from "../apiServices/apiServices";
 import { Movie } from "../types";
 
@@ -11,11 +11,12 @@ const Movies = () => {
 
   const movieName = searchParams.get("name") ?? "";
 
-  const visibleMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(movieName.toLowerCase())
-  );
+  const visibleMovies = useMemo(() => {
+    return movies.filter((movie) =>
+      movie.title.toLowerCase().includes(movieName.toLowerCase())
+    );
+  }, [movieName, movies]);
 
-  console.log(visibleMovies);
 
   useEffect(() => {
     if (!movieName) {
